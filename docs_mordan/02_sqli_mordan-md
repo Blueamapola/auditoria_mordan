@@ -1,0 +1,69 @@
+# Inyección SQL — SQL Injection
+
+## Evidencia del ataque
+
+El ataque se realizó en el módulo **SQL Injection** de DVWA con nivel de seguridad Low.
+
+**Payload utilizado:** `' OR '1'='1`
+
+En el campo "User ID" se ingresó el payload anterior. La aplicación devolvió todos los registros de usuarios de la base de datos sin ningún tipo de restricción.
+
+![SQLi](img_mordan/sqli_mordan.png)
+
+## Por qué funciona
+
+La aplicación construye la consulta SQL concatenando directamente lo que escribe el usuario:
+
+```sql
+-- Consulta normal con ID = 1
+SELECT nombre FROM users WHERE id = '1'
+
+-- Consulta con el payload
+SELECT nombre FROM users WHERE id = '' OR '1'='1'
+```
+
+La comilla simple `'` cierra el campo ID antes de tiempo, y la condición `OR '1'='1'` es siempre verdadera. Entonces la base de datos devuelve todos los registros porque la condición se cumple para cada fila.
+
+El problema de fondo es que la aplicación no separa los datos del usuario de las instrucciones SQL. Todo llega junto al motor de base de datos, que no distingue qué es dato y qué es código.
+
+## Impacto en Aguas Claras Sanitaria
+
+En el portal de clientes de Aguas Claras, esta vulnerabilidad permitiría a un atacante extraer la tabla completa de clientes: nombres, RUT, direcciones y datos de facturación de todos los usuarios registrados. También podría modificar o eliminar registros, lo que afectaría directamente la facturación y el historial de consumo.
+
+## Puntaje CVSS
+
+| Métrica | Valor |
+|---|---|
+| Vector de ataque | Red (Network) |
+| Complejidad | Baja (Low) |
+| Privilegios requeridos | Ninguno (None) |
+| Interacción de usuario | Ninguna (None) |
+| Confidencialidad | Alta (High) |
+| Integridad | Alta (High) |
+| Disponibilidad | Alta (High) |
+
+**Puntaje CVSS v3.1: 9.8 — Crítico**
+
+## Política de prevención
+
+La prevención principal es usar **consultas parametrizadas** (prepared statements). En lugar de concatenar la entrada del usuario dentro del SQL, se envía la instrucción por separado del dato:
+
+```php
+// VULNERABLE — concatena directo
+$sql = "SELECT nombre FROM users WHERE id = '$id'";
+
+// SEGURO — consulta parametrizada
+$stmt = $conn->prepare("SELECT nombre FROM users WHERE id = ?");
+$stmt->bind_param("i", $id);
+```
+
+Con esto, aunque el usuario escriba `' OR '1'='1`, el motor de base de datos lo trata como un dato, no como código SQL.
+
+## Control de mitigación
+
+Además de las consultas parametrizadas, Aguas Claras debería:
+
+- Validar que el campo ID solo acepte números enteros
+- Limitar los permisos del usuario de base de datos (que solo pueda leer, no modificar)
+- Implementar un WAF (Web Application Firewall) que detecte patrones de inyección SQL
+- Registrar y monitorear consultas inusuales a la base de datos
