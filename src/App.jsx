@@ -5,6 +5,8 @@ import XSS from './components/XSS'
 import Comandos from './components/Comandos'
 import Activos from './components/Activos'
 import Matriz from './components/Matriz'
+import Controles from './components/Controles'
+import Recuperacion from './components/Recuperacion'
 
 const secciones = [
   { id: 'resumen', label: '01 — Resumen', componente: Resumen },
@@ -13,6 +15,8 @@ const secciones = [
 { id: 'comandos', label: '04 — Comandos', componente: Comandos },
 { id: 'activos', label: '05 — Activos', componente: Activos },
 { id: 'matriz', label: '06 — Matriz', componente: Matriz },
+{ id: 'controles', label: '07 — Controles', componente: Controles },
+{ id: 'recuperacion', label: '08 — Recuperación', componente: Recuperacion },
 ]
 
 function App() {
