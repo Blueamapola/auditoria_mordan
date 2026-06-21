@@ -1,11 +1,11 @@
-function XSS() {
+function Comandos() {
   return (
-    <section className="bg-white rounded-lg shadow-md mb-8" style={{borderLeft: '4px solid #F97316', padding: '32px 40px'}}>
+    <section className="bg-white rounded-lg shadow-md mb-8" style={{borderLeft: '4px solid #EF4444', padding: '32px 40px'}}>
       <p className="text-xs mb-4 uppercase tracking-widest font-semibold" style={{color: '#0284C7'}}>
-        // 03 — XSS Reflejado
+        // 04 — Inyección de Comandos
       </p>
       <h2 className="text-2xl font-bold mb-8" style={{color: '#0F172A', fontFamily: 'Poppins, sans-serif'}}>
-        Cross-Site Scripting
+        Command Injection
       </h2>
 
       <div className="space-y-6">
@@ -14,11 +14,11 @@ function XSS() {
             Evidencia del ataque
           </h3>
           <p className="mb-4" style={{color: '#334155'}}>
-            Payload utilizado: <code className="bg-slate-100 text-red-600 px-2 py-1 rounded text-sm">&lt;script&gt;alert('XSS')&lt;/script&gt;</code>
+            Payload utilizado: <code className="bg-slate-100 text-red-600 px-2 py-1 rounded text-sm">127.0.0.1; cat /etc/passwd</code>
           </p>
-          <img src="/img_mordan/xss_mordan.png" alt="XSS" className="border border-slate-200 rounded-md w-full mb-4 shadow-sm" />
+          <img src="/img_mordan/comandos_mordan.png" alt="Comandos" className="border border-slate-200 rounded-md w-full mb-4 shadow-sm" />
           <p style={{color: '#334155'}}>
-            El navegador ejecutó el script y mostró un popup con el mensaje "XSS", demostrando que el código fue interpretado como instrucción y no como texto.
+            El servidor ejecutó el ping y además mostró el contenido completo del archivo /etc/passwd, que lista todas las cuentas de usuario del sistema operativo.
           </p>
         </div>
 
@@ -27,7 +27,7 @@ function XSS() {
             Por qué funciona
           </h3>
           <p style={{color: '#334155'}}>
-            La página inserta la entrada del usuario directamente en el HTML de respuesta sin sanitizarla. El navegador no distingue qué vino del usuario y qué es código propio de la página, por lo que ejecuta el script malicioso.
+            La página pasa la entrada del usuario directamente al sistema operativo sin validarla. El carácter punto y coma encadena dos comandos en Linux: primero ejecuta el ping y después ejecuta el segundo comando. El servidor no distingue que esa segunda parte vino del usuario.
           </p>
         </div>
 
@@ -36,7 +36,7 @@ function XSS() {
             Impacto en Aguas Claras
           </h3>
           <p style={{color: '#334155'}}>
-            Un atacante podría enviar un enlace manipulado a un cliente. Al abrirlo, el script roba la cookie de sesión y le da acceso completo a la cuenta. También podría redirigir al usuario a una página falsa para robar credenciales o datos de pago.
+            Esta es la vulnerabilidad más crítica de las tres. Un atacante con acceso al servidor podría leer archivos internos, eliminar registros, instalar software malicioso o interrumpir el servicio de facturación y control de distribución. Para una empresa de infraestructura crítica como Aguas Claras, esto podría traducirse en una interrupción del suministro de agua o una fuga masiva de datos personales.
           </p>
         </div>
 
@@ -44,10 +44,10 @@ function XSS() {
           <h3 className="font-semibold text-base mb-2" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
             CVSS v3.1
           </h3>
-          <div className="flex items-center gap-4 p-4 rounded-md" style={{backgroundColor: '#FFF7ED', border: '1px solid #fed7aa'}}>
-            <span className="font-bold text-2xl" style={{color: '#ea580c'}}>8.2</span>
-            <span className="font-bold text-xs px-2 py-1 rounded" style={{color: '#ea580c', backgroundColor: '#ffedd5'}}>ALTO</span>
-            <span className="text-sm" style={{color: '#64748b'}}>Vector de red · Interacción de usuario requerida</span>
+          <div className="flex items-center gap-4 p-4 rounded-md" style={{backgroundColor: '#FEF2F2', border: '1px solid #fecaca'}}>
+            <span className="font-bold text-2xl" style={{color: '#dc2626'}}>9.8</span>
+            <span className="font-bold text-xs px-2 py-1 rounded" style={{color: '#dc2626', backgroundColor: '#FEE2E2'}}>CRÍTICO</span>
+            <span className="text-sm" style={{color: '#64748b'}}>Vector de red · Sin autenticación · Impacto total</span>
           </div>
         </div>
 
@@ -58,19 +58,19 @@ function XSS() {
           <div className="space-y-2">
             <div className="flex items-start gap-3 p-3 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
               <span className="font-bold shrink-0" style={{color: '#0284C7'}}>→</span>
-              <span style={{color: '#334155'}}>Escapar la salida con htmlspecialchars para que el navegador muestre el texto sin ejecutarlo</span>
+              <span style={{color: '#334155'}}>Nunca pasar la entrada del usuario directamente al sistema operativo</span>
             </div>
             <div className="flex items-start gap-3 p-3 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
               <span className="font-bold shrink-0" style={{color: '#0284C7'}}>→</span>
-              <span style={{color: '#334155'}}>Implementar política CSP (Content Security Policy) que restrinja qué scripts pueden ejecutarse</span>
+              <span style={{color: '#334155'}}>Usar listas blancas que solo acepten valores con formato de IP válida</span>
             </div>
             <div className="flex items-start gap-3 p-3 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
               <span className="font-bold shrink-0" style={{color: '#0284C7'}}>→</span>
-              <span style={{color: '#334155'}}>Usar el atributo HttpOnly en las cookies de sesión para que no sean accesibles desde JavaScript</span>
+              <span style={{color: '#334155'}}>Aplicar el principio de mínimo privilegio: el servidor web no debería poder leer archivos del sistema</span>
             </div>
             <div className="flex items-start gap-3 p-3 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
               <span className="font-bold shrink-0" style={{color: '#0284C7'}}>→</span>
-              <span style={{color: '#334155'}}>Validar y sanitizar toda entrada del usuario en el servidor</span>
+              <span style={{color: '#334155'}}>Implementar un IDS que alerte sobre comandos sospechosos y aislar el servidor mediante segmentación de red</span>
             </div>
           </div>
         </div>
@@ -79,4 +79,4 @@ function XSS() {
   )
 }
 
-export default XSS
+export default Comandos
