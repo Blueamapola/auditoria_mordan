@@ -3,12 +3,16 @@ import Resumen from './components/Resumen'
 import InyeccionSQL from './components/InyeccionSQL'
 import XSS from './components/XSS'
 import Comandos from './components/Comandos'
+import Activos from './components/Activos'
+import Matriz from './components/Matriz'
 
 const secciones = [
   { id: 'resumen', label: '01 — Resumen', componente: Resumen },
   { id: 'sqli', label: '02 — SQL Injection', componente: InyeccionSQL },
 { id: 'xss', label: '03 — XSS', componente: XSS },
 { id: 'comandos', label: '04 — Comandos', componente: Comandos },
+{ id: 'activos', label: '05 — Activos', componente: Activos },
+{ id: 'matriz', label: '06 — Matriz', componente: Matriz },
 ]
 
 function App() {
