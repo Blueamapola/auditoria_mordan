@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import Resumen from './components/Resumen'
 import InyeccionSQL from './components/InyeccionSQL'
+import XSS from './components/XSS'
 
 const secciones = [
   { id: 'resumen', label: '01 — Resumen', componente: Resumen },
   { id: 'sqli', label: '02 — SQL Injection', componente: InyeccionSQL },
+{ id: 'xss', label: '03 — XSS', componente: XSS },
 ]
 
 function App() {
