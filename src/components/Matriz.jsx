@@ -21,22 +21,22 @@ function Matriz() {
         Matriz de Riesgo
       </h2>
 
-      <div className="space-y-8">
+      <div style={{display: 'flex', flexDirection: 'column', gap: '40px'}}>
 
         <div>
           <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
             Evaluación de vulnerabilidades
           </h3>
-          <div className="space-y-3">
+          <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
             {vulnerabilidades.map((v, i) => (
               <div key={i} className="p-4 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
-                <div className="flex items-center justify-between mb-2">
+                <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px', flexWrap: 'wrap', gap: '8px'}}>
                   <span className="font-semibold" style={{color: '#0F172A'}}>{v.nombre}</span>
                   <span className="text-xs font-bold px-2 py-1 rounded" style={{color: v.color, backgroundColor: v.bg}}>
                     {v.nivel} — {v.riesgo}
                   </span>
                 </div>
-                <div className="flex gap-6 text-sm" style={{color: '#64748b'}}>
+                <div style={{display: 'flex', flexWrap: 'wrap', gap: '16px', fontSize: '14px', color: '#64748b'}}>
                   <span>Probabilidad: <strong style={{color: '#0F172A'}}>{v.probabilidad}/5</strong></span>
                   <span>Impacto: <strong style={{color: '#0F172A'}}>{v.impacto}/5</strong></span>
                   <span>Riesgo: <strong style={{color: v.color}}>{v.probabilidad} × {v.impacto} = {v.riesgo}</strong></span>
@@ -50,48 +50,47 @@ function Matriz() {
           <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
             Mapa de calor
           </h3>
-          <div style={{overflowX: 'auto'}}>
-            <table style={{borderCollapse: 'collapse', width: '100%', fontSize: '13px'}}>
-              <thead>
-                <tr>
-                  <th style={{padding: '8px 12px', textAlign: 'left', color: '#64748b', fontWeight: '600'}}>Prob / Impacto</th>
-                  {[1,2,3,4,5].map(i => (
-                    <th key={i} style={{padding: '8px 12px', textAlign: 'center', color: '#64748b', fontWeight: '600'}}>
-                      Impacto {i}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {[5,4,3,2,1].map(prob => (
-                  <tr key={prob}>
-                    <td style={{padding: '8px 12px', fontWeight: '600', color: '#64748b'}}>Prob. {prob}</td>
-                    {[1,2,3,4,5].map(imp => {
-                      const valor = prob * imp
-                      const sqli = prob === 5 && imp === 5
-                      const xss = prob === 4 && imp === 4
-                      const cmd = prob === 3 && imp === 5
-                      const etiqueta = sqli ? 'SQLi' : xss ? 'XSS' : cmd ? 'Cmd' : ''
-                      return (
-                        <td key={imp} style={{
-                          padding: '8px 12px',
-                          textAlign: 'center',
-                          backgroundColor: getCeldaColor(valor),
-                          color: 'white',
-                          fontWeight: etiqueta ? '700' : '400',
-                          border: etiqueta ? '2px solid #0F172A' : '1px solid white',
-                          borderRadius: '4px'
-                        }}>
-                          {valor}{etiqueta ? ` ${etiqueta}` : ''}
-                        </td>
-                      )
-                    })}
-                  </tr>
+          <table style={{borderCollapse: 'collapse', width: '100%', fontSize: '11px', tableLayout: 'fixed'}}>
+            <thead>
+              <tr>
+                <th style={{padding: '6px 4px', textAlign: 'left', color: '#64748b', fontWeight: '600', width: '20%'}}>Prob / Imp</th>
+                {[1,2,3,4,5].map(i => (
+                  <th key={i} style={{padding: '6px 4px', textAlign: 'center', color: '#64748b', fontWeight: '600', width: '16%'}}>
+                    Imp {i}
+                  </th>
                 ))}
-              </tbody>
-            </table>
-          </div>
-          <div className="flex gap-4 mt-4 text-xs" style={{color: '#64748b'}}>
+              </tr>
+            </thead>
+            <tbody>
+              {[5,4,3,2,1].map(prob => (
+                <tr key={prob}>
+                  <td style={{padding: '6px 4px', fontWeight: '600', color: '#64748b'}}>Prob. {prob}</td>
+                  {[1,2,3,4,5].map(imp => {
+                    const valor = prob * imp
+                    const sqli = prob === 5 && imp === 5
+                    const xss = prob === 4 && imp === 4
+                    const cmd = prob === 3 && imp === 5
+                    const etiqueta = sqli ? 'SQLi' : xss ? 'XSS' : cmd ? 'Cmd' : ''
+                    return (
+                      <td key={imp} style={{
+                        padding: '6px 4px',
+                        textAlign: 'center',
+                        backgroundColor: getCeldaColor(valor),
+                        color: 'white',
+                        fontWeight: etiqueta ? '700' : '400',
+                        border: etiqueta ? '2px solid #0F172A' : '1px solid white',
+                        borderRadius: '2px',
+                        fontSize: etiqueta ? '10px' : '11px'
+                      }}>
+                        {valor}{etiqueta ? ` ${etiqueta}` : ''}
+                      </td>
+                    )
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div style={{display: 'flex', flexWrap: 'wrap', gap: '12px', marginTop: '16px', fontSize: '12px', color: '#64748b'}}>
             <span style={{display: 'flex', alignItems: 'center', gap: '6px'}}>
               <span style={{width: '12px', height: '12px', borderRadius: '2px', backgroundColor: '#EF4444', display: 'inline-block'}}></span> Crítico (≥20)
             </span>

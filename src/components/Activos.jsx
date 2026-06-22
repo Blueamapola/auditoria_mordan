@@ -22,7 +22,7 @@ function Activos() {
           <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
             Identificación y clasificación
           </h3>
-          <div className="space-y-3">
+          <div style={{display: 'flex', flexDirection: 'column', gap: '16px'}}>
             {activos.map((activo, i) => (
               <div key={i} className="p-4 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
                 <div className="flex items-center justify-between mb-2">
@@ -37,10 +37,10 @@ function Activos() {
           </div>
         </div>
 
-        <div>
-          <h3 className="font-semibold text-base mb-3" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
-            Activo más crítico
-          </h3>
+        <div style={{marginTop: '24px'}}>
+  <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
+    Activo más crítico
+  </h3>
           <div className="p-4 rounded-md" style={{backgroundColor: '#F5F3FF', border: '1px solid #ddd6fe'}}>
             <p style={{color: '#334155'}}>
               Los sistemas SCADA representan el activo de mayor criticidad para Aguas Claras Sanitaria. Su compromiso no solo afectaría la operación interna, sino que podría interrumpir el suministro de agua potable para toda la comunidad, constituyendo un impacto en infraestructura crítica nacional.

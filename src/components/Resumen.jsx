@@ -8,7 +8,7 @@ function Resumen() {
         Aguas Claras Sanitaria
       </h2>
 
-      <div className="space-y-6">
+      <div style={{display: 'flex', flexDirection: 'column', gap: '28px'}}>
         <div>
           <h3 className="font-semibold text-base mb-2" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
             Descripción de la empresa

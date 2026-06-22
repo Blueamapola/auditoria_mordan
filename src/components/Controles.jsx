@@ -25,7 +25,7 @@ function Controles() {
           <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
             Prevención por vulnerabilidad
           </h3>
-          <div className="space-y-4">
+          <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
             {['SQL Injection', 'XSS Reflejado', 'Command Injection'].map((vuln, i) => (
               <div key={i} className="p-4 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
                 <p className="font-semibold mb-2" style={{color: '#0F172A'}}>{vuln}</p>
@@ -66,11 +66,11 @@ function Controles() {
           </div>
         </div>
 
-        <div>
-          <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
-            Priorización de controles
-          </h3>
-          <div className="space-y-2">
+        <div style={{marginTop: '18px'}}>
+  <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
+    Priorización de controles
+  </h3>
+          <div style={{display: 'flex', flexDirection: 'column', gap: '6px'}}>
             {controles.map((c, i) => (
               <div key={i} className="flex items-center gap-4 p-3 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
                 <span className="text-xs font-bold px-2 py-1 rounded shrink-0" style={{color: c.color, backgroundColor: c.bg}}>

@@ -68,13 +68,13 @@ function Recuperacion() {
         Mejora Tecnológica y Plan de Recuperación
       </h2>
 
-      <div className="space-y-8">
+      <div style={{display: 'flex', flexDirection: 'column', gap: '20px'}}>
 
         <div>
           <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
             Mejoras tecnológicas recomendadas
           </h3>
-          <div className="space-y-3">
+          <div style={{display: 'flex', flexDirection: 'column', gap: 'px10'}}>
             {mejoras.map((m, i) => (
               <div key={i} className="p-4 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
                 <p className="font-semibold mb-2 text-sm" style={{color: '#0284C7'}}>{m.plazo}</p>
@@ -94,7 +94,7 @@ function Recuperacion() {
           <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
             Plan de recuperación ante desastres
           </h3>
-          <div className="space-y-3">
+          <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
             {fases.map((fase, i) => (
               <div key={i} className="p-4 rounded-md" style={{backgroundColor: fase.bg, border: `1px solid ${fase.color}30`}}>
                 <div className="flex items-center gap-3 mb-3">

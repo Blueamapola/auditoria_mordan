@@ -28,3 +28,49 @@ p {
 a {
   color: inherit;
 }
+
+/* Móvil: ocultar nav lateral, mostrar botón menú */
+.desktop-nav {
+  display: none !important;
+}
+
+.mobile-menu-btn {
+  display: flex !important;
+}
+
+.mobile-menu-dropdown {
+  display: flex !important;
+}
+
+/* Desktop: mostrar nav lateral, ocultar botón menú */
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: block !important;
+  }
+
+  .mobile-menu-btn {
+    display: none !important;
+  }
+
+  .mobile-menu-dropdown {
+    display: none !important;
+  }
+
+  main {
+    padding: 32px 0px 80px 0px !important;
+  }
+
+  section {
+    padding: 32px 40px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  main {
+    padding: 16px !important;
+  }
+
+  section {
+    padding: 20px 16px !important;
+  }
+}
