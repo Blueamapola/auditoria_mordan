@@ -114,6 +114,6 @@ Para esta evaluación usé Claude (claude.ai) como herramienta principal de apoy
 
 Usar Claude en esta evaluación me ayudó principalmente a entender el "por qué" detrás de cada vulnerabilidad, no solo el "cómo". Ejecutar el ataque en DVWA es fácil, escribir el payload y ver el resultado toma dos minutos. Lo difícil es explicar qué pasa internamente y por qué eso es un problema para una empresa específica.
 
-Los prompts que funcionaron mejor fueron los que incluían el contexto de Aguas Claras, la vulnerabilidad concreta y lo que ya había observado en el ataque. Los prompts genéricos no sirven, si pregunto "explícame SQLi" obtengo una respuesta genérica que no me ayuda a conectarlo con el portal de clientes de una empresa sanitaria.
+Los prompts que funcionaron mejor fueron los que incluían el contexto de Aguas Claras, la vulnerabilidad concreta y lo que ya había observado en el ataque. Los prompts genéricos no sirven, si pregunto "explícame SQLi" obtengo una respuesta genérica que no me ayuda a conectarlo con el sistema auditado de una empresa sanitaria.
 
 La responsabilidad técnica sigue siendo mía: la IA puede explicar conceptos, pero no sabe qué sistemas tiene Aguas Claras ni qué impacto tendría un ataque en su operación. Eso lo tuve que razonar yo.

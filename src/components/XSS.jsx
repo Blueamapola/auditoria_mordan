@@ -16,7 +16,10 @@ function XSS() {
           <p className="mb-4" style={{color: '#334155'}}>
             Payload utilizado: <code className="bg-slate-100 text-red-600 px-2 py-1 rounded text-sm">&lt;script&gt;alert('XSS')&lt;/script&gt;</code>
           </p>
-          <img src="/img_mordan/xss_mordan.png" alt="XSS" className="border border-slate-200 rounded-md w-full mb-4 shadow-sm" />
+          <img src="/img_mordan/xss_mordan.png" alt="XSS" className="border border-slate-200 rounded-md w-full shadow-sm" />
+<p className="text-xs text-center mt-2 mb-4 italic" style={{color: '#64748b'}}>
+  La imagen muestra el popup ejecutado tras ingresar el payload en el campo de nombre del módulo XSS (Reflected) de DVWA. El navegador interpretó el script como código propio de la página y lo ejecutó.
+</p>
           <p style={{color: '#334155'}}>
             El navegador ejecutó el script y mostró un popup con el mensaje "XSS", demostrando que el código fue interpretado como instrucción y no como texto.
           </p>

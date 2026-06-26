@@ -13,9 +13,9 @@ function Activos() {
       <p className="text-xs mb-4 uppercase tracking-widest font-semibold" style={{color: '#0284C7'}}>
         // 05 — Activos de Información
       </p>
-      <h2 className="text-2xl font-bold mb-8" style={{color: '#0F172A', fontFamily: 'Poppins, sans-serif'}}>
-        Activos Críticos — Aguas Claras Sanitaria
-      </h2>
+      <h2 style={{color: '#0F172A', fontFamily: 'Poppins, sans-serif', fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '12px'}}>
+  Activos Críticos — Aguas Claras Sanitaria
+</h2>
 
       <div className="space-y-6">
         <div>
@@ -36,7 +36,29 @@ function Activos() {
             ))}
           </div>
         </div>
-
+            <div style={{marginTop: '24px'}}>
+  <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
+    Vulnerabilidades por activo
+  </h3>
+  <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
+    <div className="p-3 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
+      <p className="font-semibold text-sm mb-1" style={{color: '#0F172A'}}>Base de datos de clientes</p>
+      <p className="text-sm" style={{color: '#334155'}}>En riesgo por: <span className="font-semibold" style={{color: '#EF4444'}}>Inyección SQL</span> — exposición total de registros de clientes.</p>
+    </div>
+    <div className="p-3 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
+      <p className="font-semibold text-sm mb-1" style={{color: '#0F172A'}}>Portal web de clientes</p>
+      <p className="text-sm" style={{color: '#334155'}}>En riesgo por: <span className="font-semibold" style={{color: '#F97316'}}>XSS Reflejado</span> — robo de sesiones y suplantación de identidad.</p>
+    </div>
+    <div className="p-3 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
+      <p className="font-semibold text-sm mb-1" style={{color: '#0F172A'}}>Servidor web</p>
+      <p className="text-sm" style={{color: '#334155'}}>En riesgo por: <span className="font-semibold" style={{color: '#EF4444'}}>Inyección de comandos</span> — control total del servidor.</p>
+    </div>
+    <div className="p-3 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>
+      <p className="font-semibold text-sm mb-1" style={{color: '#0F172A'}}>Sistema de facturación y Credenciales</p>
+      <p className="text-sm" style={{color: '#334155'}}>En riesgo por: <span className="font-semibold" style={{color: '#EF4444'}}>Inyección SQL</span> e <span className="font-semibold" style={{color: '#EF4444'}}>Inyección de comandos</span> — modificación de registros y acceso no autorizado.</p>
+    </div>
+  </div>
+</div>
         <div style={{marginTop: '24px'}}>
   <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
     Activo más crítico

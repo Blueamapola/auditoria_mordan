@@ -1,5 +1,10 @@
 # Políticas de Prevención y Controles de Mitigación
 
+
+## Marco de referencia
+
+Los controles propuestos se basan en el estándar **OWASP (Open Web Application Security Project)**, específicamente en el OWASP Top 10, que identifica las vulnerabilidades web más críticas y sus contramedidas. Para la priorización se complementa con el marco **NIST Cybersecurity Framework**.
+
 ## Introducción
 
 Una vez identificadas las vulnerabilidades y evaluado su riesgo, el siguiente paso es definir las medidas para reducir la probabilidad de que ocurran y minimizar el daño en caso de que sí ocurran. Se distinguen dos tipos de medidas:

@@ -1,8 +1,17 @@
 function Matriz() {
   const vulnerabilidades = [
-    { nombre: 'Inyección SQL', probabilidad: 5, impacto: 5, riesgo: 25, nivel: 'Crítico', color: '#EF4444', bg: '#FEF2F2' },
-    { nombre: 'XSS Reflejado', probabilidad: 4, impacto: 4, riesgo: 16, nivel: 'Alto', color: '#F97316', bg: '#FFF7ED' },
-    { nombre: 'Inyección de comandos', probabilidad: 3, impacto: 5, riesgo: 15, nivel: 'Alto', color: '#F97316', bg: '#FFF7ED' },
+    { 
+      nombre: 'Inyección SQL', probabilidad: 5, impacto: 5, riesgo: 25, nivel: 'Crítico', color: '#EF4444', bg: '#FEF2F2',
+      justificacion: 'Probabilidad máxima: el payload es trivial, está ampliamente documentado y no requiere autenticación. Impacto máximo: expone toda la base de datos de clientes de Aguas Claras, incluyendo datos personales protegidos por la Ley 19.628.'
+    },
+    { 
+      nombre: 'XSS Reflejado', probabilidad: 4, impacto: 4, riesgo: 16, nivel: 'Alto', color: '#F97316', bg: '#FFF7ED',
+      justificacion: 'Probabilidad alta: el ataque requiere que la víctima haga clic en un enlace manipulado, alcanzable mediante phishing dirigido a clientes. Impacto alto: permite robar sesiones activas y suplantar identidades en el portal.'
+    },
+    { 
+      nombre: 'Inyección de comandos', probabilidad: 3, impacto: 5, riesgo: 15, nivel: 'Alto', color: '#F97316', bg: '#FFF7ED',
+      justificacion: 'Probabilidad media: requiere encontrar el formulario vulnerable, lo que implica reconocimiento previo. Impacto máximo: da control total del servidor y acceso potencial a sistemas SCADA de distribución de agua.'
+    },
   ]
 
   const getCeldaColor = (valor) => {
@@ -36,13 +45,43 @@ function Matriz() {
                     {v.nivel} — {v.riesgo}
                   </span>
                 </div>
-                <div style={{display: 'flex', flexWrap: 'wrap', gap: '16px', fontSize: '14px', color: '#64748b'}}>
+                <div style={{display: 'flex', flexWrap: 'wrap', gap: '16px', fontSize: '14px', color: '#64748b', marginBottom: '8px'}}>
                   <span>Probabilidad: <strong style={{color: '#0F172A'}}>{v.probabilidad}/5</strong></span>
                   <span>Impacto: <strong style={{color: '#0F172A'}}>{v.impacto}/5</strong></span>
                   <span>Riesgo: <strong style={{color: v.color}}>{v.probabilidad} × {v.impacto} = {v.riesgo}</strong></span>
                 </div>
+                <p className="text-sm" style={{color: '#334155'}}>{v.justificacion}</p>
               </div>
             ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
+            Priorización de atención
+          </h3>
+          <div style={{display: 'flex', flexDirection: 'column', gap: '12px'}}>
+            <div className="p-3 rounded-md" style={{backgroundColor: '#FEF2F2', border: '1px solid #fecaca'}}>
+              <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px'}}>
+                <span style={{backgroundColor: '#EF4444', color: 'white', fontSize: '11px', fontWeight: 'bold', padding: '2px 8px', borderRadius: '4px'}}>1° ATENDER</span>
+                <span className="font-semibold text-sm" style={{color: '#0F172A'}}>Inyección SQL — CVSS 9.8</span>
+              </div>
+              <p className="text-sm" style={{color: '#334155'}}>Riesgo máximo (25/25). Expone toda la base de datos de clientes sin autenticación. Debe corregirse de forma inmediata.</p>
+            </div>
+            <div className="p-3 rounded-md" style={{backgroundColor: '#FEF2F2', border: '1px solid #fecaca'}}>
+              <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px'}}>
+                <span style={{backgroundColor: '#EF4444', color: 'white', fontSize: '11px', fontWeight: 'bold', padding: '2px 8px', borderRadius: '4px'}}>2° ATENDER</span>
+                <span className="font-semibold text-sm" style={{color: '#0F172A'}}>Inyección de comandos — CVSS 9.8</span>
+              </div>
+              <p className="text-sm" style={{color: '#334155'}}>Riesgo alto (15/25). Permite control total del servidor. Impacto crítico en infraestructura sanitaria.</p>
+            </div>
+            <div className="p-3 rounded-md" style={{backgroundColor: '#FFF7ED', border: '1px solid #fed7aa'}}>
+              <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '4px'}}>
+                <span style={{backgroundColor: '#F97316', color: 'white', fontSize: '11px', fontWeight: 'bold', padding: '2px 8px', borderRadius: '4px'}}>3° ATENDER</span>
+                <span className="font-semibold text-sm" style={{color: '#0F172A'}}>XSS Reflejado — CVSS 8.2</span>
+              </div>
+              <p className="text-sm" style={{color: '#334155'}}>Riesgo alto (16/25). Requiere interacción del usuario para explotar. Igualmente urgente por el riesgo de robo de sesiones.</p>
+            </div>
           </div>
         </div>
 

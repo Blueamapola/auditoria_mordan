@@ -16,7 +16,10 @@ function Comandos() {
           <p className="mb-4" style={{color: '#334155'}}>
             Payload utilizado: <code className="bg-slate-100 text-red-600 px-2 py-1 rounded text-sm">127.0.0.1; cat /etc/passwd</code>
           </p>
-          <img src="/img_mordan/comandos_mordan.png" alt="Comandos" className="border border-slate-200 rounded-md w-full mb-4 shadow-sm" />
+          <img src="/img_mordan/comandos_mordan.png" alt="Comandos" className="border border-slate-200 rounded-md w-full shadow-sm" />
+<p className="text-xs text-center mt-2 mb-4 italic" style={{color: '#64748b'}}>
+  La imagen muestra el resultado del payload 127.0.0.1; cat /etc/passwd ejecutado en el módulo Command Injection de DVWA. El servidor ejecutó ambos comandos y devolvió el contenido del archivo de cuentas del sistema.
+</p>
           <p style={{color: '#334155'}}>
             El servidor ejecutó el ping y además mostró el contenido completo del archivo /etc/passwd, que lista todas las cuentas de usuario del sistema operativo.
           </p>

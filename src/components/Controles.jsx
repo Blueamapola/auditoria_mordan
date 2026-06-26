@@ -25,6 +25,14 @@ function Controles() {
           <h3 className="font-semibold text-base mb-4" style={{color: '#0F172A', borderBottom: '1px solid #e2e8f0', paddingBottom: '8px'}}>
             Prevención por vulnerabilidad
           </h3>
+          <div className="p-4 rounded-md mb-6" style={{backgroundColor: '#EFF6FF', border: '1px solid #bfdbfe'}}>
+  <p className="text-sm font-semibold mb-1" style={{color: '#0284C7'}}>Marco de referencia</p>
+  <p className="text-sm" style={{color: '#334155'}}>
+    Los controles propuestos se basan en el estándar <strong>OWASP (Open Web Application Security Project)</strong>, 
+    específicamente en el OWASP Top 10, que identifica las vulnerabilidades web más críticas y sus contramedidas. 
+    Para la priorización se complementa con el marco <strong>NIST Cybersecurity Framework</strong>.
+  </p>
+</div>
           <div style={{display: 'flex', flexDirection: 'column', gap: '8px'}}>
             {['SQL Injection', 'XSS Reflejado', 'Command Injection'].map((vuln, i) => (
               <div key={i} className="p-4 rounded-md" style={{backgroundColor: '#F8FAFC', border: '1px solid #e2e8f0'}}>

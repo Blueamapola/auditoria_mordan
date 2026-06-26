@@ -16,7 +16,10 @@ function InyeccionSQL() {
           <p className="mb-4" style={{color: '#334155'}}>
             Payload utilizado: <code className="bg-slate-100 text-red-600 px-2 py-1 rounded text-sm">' OR '1'='1</code>
           </p>
-          <img src="/img_mordan/sqli_mordan.png" alt="SQLi" className="border border-slate-200 rounded-md w-full mb-4 shadow-sm" />
+          <img src="/img_mordan/sqli_mordan.png" alt="SQLi" className="border border-slate-200 rounded-md w-full shadow-sm" />
+<p className="text-xs text-center mt-2 mb-4 italic" style={{color: '#64748b'}}>
+  La imagen muestra el resultado del payload ' OR '1'='1 ejecutado en el módulo SQL Injection de DVWA con nivel de seguridad Low. Se observa que la aplicación devolvió todos los registros de la base de datos sin autenticación.
+</p>
           <p style={{color: '#334155'}}>
             La aplicación devolvió todos los registros de usuarios de la base de datos sin ningún tipo de restricción.
           </p>
